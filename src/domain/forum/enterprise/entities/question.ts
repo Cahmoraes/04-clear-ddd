@@ -4,6 +4,7 @@ import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { Optional } from '@/core/types/optional'
 import { AggregateRoot } from '../../../../core/entities/aggregate-root'
 import { QuestionAttachmentList } from './question-attachment-list'
+import { QuestionBestAnswerChosenEvent } from '../events/question-best-answer-chosen'
 
 export interface QuestionProps {
   authorId: UniqueEntityID
@@ -43,6 +44,11 @@ export class Question extends AggregateRoot<QuestionProps> {
   }
 
   set bestAnswerId(aBestAnswerId: UniqueEntityID | undefined) {
+    if (aBestAnswerId && aBestAnswerId !== this.props.bestAnswerId) {
+      this.addDomainEvent(
+        new QuestionBestAnswerChosenEvent(this, aBestAnswerId),
+      )
+    }
     this.props.bestAnswerId = aBestAnswerId
     this.touch()
   }

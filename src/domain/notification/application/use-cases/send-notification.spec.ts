@@ -1,12 +1,12 @@
 import { SendNotificationUseCase } from './send-notification'
-import { InMemoryNotificationRepository } from 'test/repositories/in-memory-notifications-repository'
+import { InMemoryNotificationsRepository } from 'test/repositories/in-memory-notifications-repository'
 
-let inMemoryNotificationsRepository: InMemoryNotificationRepository
+let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sut: SendNotificationUseCase
 
 describe('Send Notification', () => {
   beforeEach(() => {
-    inMemoryNotificationsRepository = new InMemoryNotificationRepository()
+    inMemoryNotificationsRepository = new InMemoryNotificationsRepository()
     sut = new SendNotificationUseCase(inMemoryNotificationsRepository)
   })
 

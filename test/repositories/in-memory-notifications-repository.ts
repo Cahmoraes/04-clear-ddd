@@ -2,7 +2,9 @@ import { NotificationsRepository } from '@/domain/notification/application/repos
 import { Notification } from '@/domain/notification/enterprise/entities/notification'
 import ExtendedSet from '@cahmoraes93/extended-set'
 
-export class InMemoryNotificationRepository implements NotificationsRepository {
+export class InMemoryNotificationsRepository
+  implements NotificationsRepository
+{
   public items = new ExtendedSet<Notification>()
 
   async save(notification: Notification): Promise<void> {
